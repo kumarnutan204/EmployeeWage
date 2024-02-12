@@ -14,15 +14,17 @@ class EmployeeWage:
         
     def calculate_wage(self):
         emp_status = self.check_attendance()
-        if emp_status == 'present':
-            self.total_wage = self.wage_per_hour * self.full_day
-            print("the Employee is present")
-        elif emp_status=="half_day":
-            self.total_wage = self.wage_per_hour * self.part_time_hr
-            print("the Employee is on Half day working")
+        match emp_status:
             
-        else:
-            print("The Employee is absent")
+            case 'present':
+                self.total_wage = self.wage_per_hour * self.full_day
+                print("the Employee is present")
+            case "half_day":
+                self.total_wage = self.wage_per_hour * self.part_time_hr
+                print("the Employee is on Half day working")
+                
+            case _:
+                print("The Employee is absent")
 
 
 emp_part1= EmployeeWage()
