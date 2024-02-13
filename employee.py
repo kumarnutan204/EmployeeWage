@@ -6,6 +6,8 @@ class EmployeeWage:
         self.full_day = 8
         self.total_wage = 0
         self.part_time_hr = 4
+        self.total_work_days=20
+        self.total_month_wage=0
     
     def check_attendance(self):
         attendance = random.choice(["present", "absent","half_day"])
@@ -18,7 +20,8 @@ class EmployeeWage:
             
             case 'present':
                 self.total_wage = self.wage_per_hour * self.full_day
-                print("the Employee is present")
+                self.total_month_wage=self.wage_per_hour*self.full_day*self.total_work_days
+                print("the Employee is present on full day working")
             case "half_day":
                 self.total_wage = self.wage_per_hour * self.part_time_hr
                 print("the Employee is on Half day working")
@@ -27,6 +30,7 @@ class EmployeeWage:
                 print("The Employee is absent")
 
 
-emp_part1= EmployeeWage()
-emp_part1.calculate_wage()
-print(emp_part1.total_wage)
+emp1= EmployeeWage()
+emp1.calculate_wage()
+print(emp1.total_wage)
+print(emp1.total_month_wage)
