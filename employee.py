@@ -1,7 +1,8 @@
 import random 
 
 class EmployeeWage:
-    def __init__(self,full_day,wage_per_hour,max_work_days,max_work_hours, emp_type):
+    def __init__(self, name,full_day,wage_per_hour,max_work_days,max_work_hours, emp_type):
+        self.emp_name = name
         self.full_day = full_day
         self.wage_per_hour = wage_per_hour
         self.total_wage = 0
@@ -43,13 +44,59 @@ class EmployeeWage:
             self.calculate_wage()
 
 
-f_d_w=int(input("Enter 8 the full day work hours "))
-w_p_h= int(input("Enter 20 the wage per hour for your company"))
-max_w_h= int(input("Enter 100 the max working hours for your company"))
-max_w_d= int(input("Enter 25 the max working days for your company"))
+class Company:
+    
+    def __init__(self, name):
+        self.company_name = name
+        self.employee_dict = {}
+        
+        
+    def add_employee(self, emp_obj):
+        self.employee_dict.update({emp_obj.emp_name: emp_obj})
+        print("Employee name added to the company dictionary")
+        
+    def get_employee(self, emp_name):
+        return self.employee_dict.get(emp_name)
+        
+    def display_employee(self):
+        return(self.employee_dict)
+    def delete_employee(self, emp_name):
+        del self.employee_dict[emp_name]
+        return self.employee_dict
+        
+        """
+        display, update, delete
+        """
+        
+def add():
+    emp_name=input("Enter the employee name: ")
+    if emp_name not in company.employee_dict.keys():
+        print(company.display_employee())
+        f_d_w=int(input("Enter 8 the full day work hours :")) #f_d_w= full day work hours
+        w_p_h= int(input("Enter 20 the wage per hour for your company: "))#w_p_h=wage per hour
+        max_w_h= int(input("Enter 100 the max working hours for your company: "))#max_w_h = max working hours
+        max_w_d= int(input("Enter 25 the max working days for your company: "))#max_w_d= max working days 
 
-status= input("Enter 'half_day' a part time employee else enter full day")
+        status= input("Enter 'half_day' a part time employee else enter full day: ")
 
-emp1= EmployeeWage(f_d_w,w_p_h,max_w_d,max_w_h,status)
-emp1.monthly_wage()
-print(emp1.total_wage, emp1.hours_worked, emp1.days_worked)
+        emp= EmployeeWage(emp_name, f_d_w,w_p_h,max_w_d,max_w_h,status)
+        emp.monthly_wage()
+        print(emp.total_wage, emp.hours_worked, emp.days_worked)
+        company.add_employee(emp)
+        # company.get_employee(emp_name)
+        print(company.display_employee())
+    else:
+        print('Employee already exists')
+        # choice= int(input("Enter 1 to show all employees"))
+        # if choice==1:
+        #     company.display_employee()
+
+
+if __name__ == '__main__':
+    company_name = input("Enter the company name ")
+    company = Company(company_name)
+    add()
+    company.display_employee()
+    
+    
+    
