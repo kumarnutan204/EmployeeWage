@@ -56,7 +56,7 @@ class Company:
         print("Employee name added to the company dictionary")
         
     def get_employee(self, emp_name):
-        return self.employee_dict.get(emp_name)
+        return self.employee_dict[emp_name]
         
     def display_employee(self):
         return(self.employee_dict)
@@ -85,6 +85,7 @@ def add():
         company.add_employee(emp)
         # company.get_employee(emp_name)
         print(company.display_employee())
+        print(company.get_employee(emp_name))
     else:
         print('Employee already exists')
         # choice= int(input("Enter 1 to show all employees"))
@@ -96,7 +97,11 @@ if __name__ == '__main__':
     company_name = input("Enter the company name ")
     company = Company(company_name)
     add()
-    company.display_employee()
+    choice ='yes'
+    choice= (input("Do you want to add more employee for the same company ? press yes to continue or no to exit"))
+    while(choice=='yes'):
+        add()
+    # company.display_employee()
     
     
     
